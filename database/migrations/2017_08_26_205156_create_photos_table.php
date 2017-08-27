@@ -15,10 +15,10 @@ class CreatePhotosTable extends Migration
     {
         Schema::create('photos', function (Blueprint $table) {
             $table->increments('id');
-            // User ID who added the attraction.
-            $table->integer('user_id')->unsigned()->index();
             // The attraction ID to which this photo belongs.
             $table->integer('attraction_id')->unsigned()->index();
+            // User ID who added the attraction.
+            $table->integer('user_id')->unsigned()->index();
             // Name of the file in the storage.
             $table->string('file');
             $table->timestamps();

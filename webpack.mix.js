@@ -11,5 +11,20 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+mix
+    .sass('resources/assets/sass/app.scss', 'public/css')
+    .styles([
+        'resources/assets/sass/blog-post.css',
+        'resources/assets/sass/bootstrap.css',
+        'resources/assets/sass/font-awesome.css',
+        'resources/assets/sass/metisMenu.css',
+        'resources/assets/sass/sb-admin-2.css',
+        'resources/assets/sass/styles.css'
+    ], 'public/css/libs.css')
+    .scripts([
+        'resources/assets/js/jquery.js',
+        'resources/assets/js/bootstrap.js',
+        'resources/assets/js/metisMenu.js',
+        'resources/assets/js/sb-admin-2.js',
+        'resources/assets/js/scripts.js'
+    ], 'public/js/libs.js');
