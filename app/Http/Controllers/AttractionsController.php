@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Attraction;
+use App\Review;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AttractionsController extends Controller
 {
@@ -37,7 +39,16 @@ class AttractionsController extends Controller
         // Get attraction with specific ID.
         $attraction = Attraction::findOrFail($id);
 
+        // Get possible rates for review.
+        $rates = Review::getRates();
+
+        // Get all reviews.
+        $reviews = $attraction->reviews;
+
+        // Get users review.
+        $userReview = $attraction->reviews()->whereUserId(Auth::user()->id)->first();
+
         // Load view from the resource "resources\views\attractions\show.blade.php"
-        return view('attractions.show', compact('attraction'));
+        return view('attractions.show', compact('attraction', 'rates', 'reviews', 'userReview'));
     }
 }

@@ -1,5 +1,7 @@
 {
     "/css/app.css": "/css/app.css",
     "/css/libs.css": "/css/libs.css",
-    "/js/libs.js": "/js/libs.js"
+    "/css/blueimp.css": "/css/blueimp.css",
+    "/js/libs.js": "/js/libs.js",
+    "/js/blueimp.js": "/js/blueimp.js"
 }

@@ -21,6 +21,11 @@ Auth::routes();
 Route::get('/', 'AttractionsController@index')->name('attractions.index');
 Route::get('/{id}', 'AttractionsController@show')->name('attractions.show');
 
+Route::group(['middleware' => ['auth']], function() {
+    Route::post('/{attraction}/review', 'ReviewsController@store');
+    Route::patch('/{attraction}/review/{review}', 'ReviewsController@update');
+});
+
 // Route group for the administration panel.
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['admin']], function() {
     Route::get('/', function() {

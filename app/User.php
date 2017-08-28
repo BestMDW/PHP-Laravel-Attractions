@@ -75,6 +75,18 @@ class User extends Authenticatable
     /******************************************************************************************************************/
 
     /**
+     * Make Eloquent One to Many relation.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function reviews()
+    {
+        return $this->hasMany('App\Review');
+    }
+
+    /******************************************************************************************************************/
+
+    /**
      * Returns whether or not the user is active.
      *
      * @return bool
