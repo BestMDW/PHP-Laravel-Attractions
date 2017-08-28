@@ -19,8 +19,8 @@ Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'AttractionsController@index')->name('attractions.index');
+Route::get('/topRated', 'AttractionsController@topRated')->name('attractions.topRated');
 Route::get('/{id}', 'AttractionsController@show')->name('attractions.show');
-Route::get('/top', 'AttractionsController@topRated')->name('attractions.topRated');
 
 Route::group(['middleware' => ['auth']], function() {
     Route::post('/{attraction}/review', 'ReviewsController@store');

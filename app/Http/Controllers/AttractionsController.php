@@ -6,6 +6,7 @@ use App\Attraction;
 use App\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AttractionsController extends Controller
 {
@@ -42,10 +43,15 @@ class AttractionsController extends Controller
     public function topRated()
     {
         // Get all approved attractions.
-        $attractions = Attraction::all()->leftJoin('reviews', 'reviews.attraction_id', '=', 'attraction.id')->sortBy('name');
+        $attractions = Attraction::select('attractions.*', DB::raw('AVG(reviews.rating) AS rate'))
+            ->leftJoin('reviews', 'attractions.id', '=', 'reviews.attraction_id')
+            ->groupBy('id')
+            ->orderByDesc('rate')
+            ->limit(5)
+            ->get();
 
         // Load view from the resource "resources\views\attractions\index.blade.php"
-        return view('attractions.index', compact('attractions'));
+        return view('attractions.topRated', compact('attractions'));
     }
 
     /******************************************************************************************************************/
