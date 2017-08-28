@@ -24,7 +24,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'role_id', 'name', 'email', 'password', 'active',
     ];
 
     /**
@@ -106,16 +106,5 @@ class User extends Authenticatable
     public static function getStatusOptions() : array
     {
         return self::ACTIVE_STATES;
-    }
-
-    /******************************************************************************************************************/
-
-    /**
-     * Prepares password for the insert to the database.
-     *
-     * @param $password
-     */
-    public function setPasswordAttribute($password) {
-        $this->attributes['password'] = bcrypt($password);
     }
 }

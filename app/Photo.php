@@ -3,16 +3,20 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Photo extends Model
 {
+    /** Placeholder path. */
+    const PLACEHOLDER = '/images/placeholder-300x300.png';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'file'
+        'attraction_id', 'path'
     ];
 
     /******************************************************************************************************************/

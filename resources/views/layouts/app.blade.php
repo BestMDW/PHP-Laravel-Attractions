@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Attractions') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -48,7 +48,7 @@
                         @else
                             @if(Auth::user()->isAdmin())
                             <li>
-                                <a href="{{ route('admin') }}">Admin Panel</a>
+                                <a href="{{ route('admin.index') }}">Admin Panel</a>
                             </li>    
                             @endif
                             <li class="dropdown">
@@ -78,7 +78,7 @@
 
         @yield('content')
     </div>
-
+    @yield('footer')
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 </body>

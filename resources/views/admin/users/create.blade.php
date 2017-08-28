@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    <h1>Add User</h1>
+    <h1>Create User</h1>
     {!! Form::open(['method' => 'POST', 'action' => 'AdminUsersController@store']) !!}
         <div class="form-group">
             {!! Form::label('name', 'Name:') !!}
@@ -27,7 +27,7 @@
             {!! Form::select('active', ['' => 'Choose Option'] + $activeStates, null, ['class' => 'form-control']) !!}
         </div>
         <div class="form-group">
-            {!! Form::submit('Add User', ['class' => 'btn btn-primary']) !!}
+            {!! Form::submit('Create User', ['class' => 'btn btn-primary']) !!}
         </div>
     {!! Form::close() !!}
     @include('includes.form_error')

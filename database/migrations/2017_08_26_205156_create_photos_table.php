@@ -19,8 +19,8 @@ class CreatePhotosTable extends Migration
             $table->integer('attraction_id')->unsigned()->index();
             // User ID who added the attraction.
             $table->integer('user_id')->unsigned()->index();
-            // Name of the file in the storage.
-            $table->string('file');
+            // Path to the file in the storage.
+            $table->string('path');
             $table->timestamps();
 
             //---------------------------------------------------------------------------------------------------------

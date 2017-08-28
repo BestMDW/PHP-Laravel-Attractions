@@ -11,20 +11,24 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'AttractionsController@index')->name('attractions.index');
+Route::get('/{id}', 'AttractionsController@show')->name('attractions.show');
 
 // Route group for the administration panel.
-Route::middleware(['admin'])->prefix('admin')->group(function() {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['admin']], function() {
     Route::get('/', function() {
         return view('admin.index');
-    })->name('admin');
+    })->name('index');
 
     // Resource controller for the users section in the administrator panel.
     Route::resource('users', 'AdminUsersController');
+    // Resource controller for the attractions section in the administrator panel.
+    Route::resource('attractions', 'AdminAttractionsController');
 });

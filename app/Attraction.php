@@ -26,4 +26,26 @@ class Attraction extends Model
     {
         return $this->hasMany('App\Photo');
     }
+
+    /******************************************************************************************************************/
+
+    /**
+     * Make Eloquent One to Many relation (Inverse).
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user() {
+        return $this->belongsTo('App\User');
+    }
+
+    /******************************************************************************************************************/
+
+    /**
+     * Make Eloquent One to Many relation.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function reviews() {
+        return $this->hasMany('App\Review');
+    }
 }

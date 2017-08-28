@@ -18,7 +18,7 @@
             @foreach($users as $user)
                 <tr>
                     <td>{{ $user->id }}</td>
-                    <td><a href="{{ route('users.edit', $user->id) }}">{{ $user->name }}</a></td>
+                    <td><a href="{{ route('admin.users.edit', $user->id) }}">{{ $user->name }}</a></td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->role_id ? $user->role->name : 'N/A' }}</td>
                     <td>{{ $user->active ? "Active" : "Not Active" }}</td>

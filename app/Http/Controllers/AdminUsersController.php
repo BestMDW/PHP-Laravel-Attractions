@@ -84,14 +84,18 @@ class AdminUsersController extends Controller
      */
     public function store(UsersRequest $request)
     {
+        // Get all request.
+        $input = $request->all();
+        $input['password'] = bcrypt($input['password']);
+
         // Add new user to the database.
-        User::create($request->all());
+        User::create($input);
 
         // Create toast message for the addition.
-        Session::flash('toastMessage', 'User "' . $request->name . '" has been added.');
+        Session::flash('toastMessage', 'User "' . $input['name'] . '" has been added.');
 
         // Redirect to the list of the users.
-        return redirect()->route('users.index');
+        return redirect()->route('admin.users.index');
     }
 
     /******************************************************************************************************************/
@@ -138,6 +142,7 @@ class AdminUsersController extends Controller
         } else {
             // New password is provided, get everything from post.
             $input = $request->all();
+            $input['password'] = bcrypt($input['password']);
         }
 
         // Update the user.
@@ -147,7 +152,7 @@ class AdminUsersController extends Controller
         Session::flash('toastMessage', 'User "' . $request->name . '" has been edited.');
 
         // Redirect to the list of the users.
-        return redirect()->route('users.index');
+        return redirect()->route('admin.users.index');
     }
 
     /******************************************************************************************************************/
@@ -170,6 +175,6 @@ class AdminUsersController extends Controller
         $user->delete();
 
         // Redirect to the list of the users.
-        return redirect()->route('users.index');
+        return redirect()->route('admin.users.index');
     }
 }
