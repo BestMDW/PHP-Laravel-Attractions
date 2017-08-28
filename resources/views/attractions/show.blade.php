@@ -4,7 +4,9 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">{{ $attraction->name }}</div>
+                    <div class="panel-heading">
+                        <strong>{{ $attraction->name }}</strong>
+                    </div>
                     <div class="panel-body">
                         {{ $attraction->body }}
                         @if($attraction->photos)
@@ -12,7 +14,7 @@
                             <div id="links">
                                 @foreach($attraction->photos as $photo)
                                     <a href="{{ asset('storage/' . $photo->path) }}" class="col-sm-2" title="">
-                                        <img src="{{ asset('storage/' . $photo->path) }}" class="img-thumbnail img-rounded img-responsive" alt="">
+                                        <img src="{{ asset('storage/' . $photo->path) }}" class="img-thumbnail" alt="">
                                     </a>
                                 @endforeach
                             </div>
@@ -79,13 +81,20 @@
                     <div class="col-md-8 col-md-offset-2">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <button type="button" class="close pull-left" aria-label="Hide">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                {{ $review->user->name }}
-                                <div class="lead text-info pull-right">
+                                <div class="col-sm-{{ Auth::user()->isAdmin() ? '9' : '10' }}">
+                                    {{ $review->user->name }} <i>[{{ $review->created_at->diffForHumans() }}]</i>
+                                </div>
+                                <div class="col-sm-2 text-info text-right">
                                     <strong>{{ $review->rating }}</strong>
                                 </div>
+                                @if(Auth::user()->isAdmin())
+                                    <div class="col-sm-1">
+                                        {!! Form::open(['method' => 'PATCH', 'action' => ['AdminReviewsController@hidden', $review->id]]) !!}
+                                            {!! Form::submit('Hide', ['class' => 'btn btn-danger']) !!}
+                                        {!! Form::close() !!}
+                                    </div>
+                                @endif
+                                <div class="clearfix"></div>
                             </div>
                             <div class="panel-body">
                                 <p>{{ $review->content }}</p>

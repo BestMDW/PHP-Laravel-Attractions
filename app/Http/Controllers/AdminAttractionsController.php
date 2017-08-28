@@ -11,6 +11,18 @@ use Illuminate\Support\Facades\Storage;
 class AdminAttractionsController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
+
+    /******************************************************************************************************************/
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -18,11 +30,13 @@ class AdminAttractionsController extends Controller
     public function index()
     {
         // Get all attractions.
-        $attractions = Attraction::all();
+        $attractions = Attraction::all()->sortBy('name');
 
         // Load view from the resource "resources\views\admin\attractions\index.blade.php"
         return view('admin.attractions.index', compact('attractions'));
     }
+
+    /******************************************************************************************************************/
 
     /**
      * Show the form for creating a new resource.
@@ -34,6 +48,8 @@ class AdminAttractionsController extends Controller
         // Load view from the resource "resources\views\admin\attractions\create.blade.php"
         return view('admin.attractions.create');
     }
+
+    /******************************************************************************************************************/
 
     /**
      * Store a newly created resource in storage.
@@ -62,16 +78,7 @@ class AdminAttractionsController extends Controller
         return redirect()->route('admin.attractions.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+    /******************************************************************************************************************/
 
     /**
      * Show the form for editing the specified resource.
@@ -87,6 +94,8 @@ class AdminAttractionsController extends Controller
         // Load view from the resource "resources\views\admin\attractions\edit.blade.php"
         return view('admin.attractions.edit', compact('attraction'));
     }
+
+    /******************************************************************************************************************/
 
     /**
      * Update the specified resource in storage.
@@ -106,6 +115,8 @@ class AdminAttractionsController extends Controller
         // Redirect to the list of the attractions.
         return redirect()->route('admin.attractions.index');
     }
+
+    /******************************************************************************************************************/
 
     /**
      * Remove the specified resource from storage.

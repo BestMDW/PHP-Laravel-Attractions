@@ -25,7 +25,7 @@ class Review extends Model
      * @var array
      */
     protected $fillable = [
-        'attraction_id', 'rating', 'content'
+        'attraction_id', 'rating', 'content', 'visible'
     ];
 
     /******************************************************************************************************************/
@@ -50,6 +50,18 @@ class Review extends Model
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    /******************************************************************************************************************/
+
+    /**
+     * Checks if review is visible.
+     *
+     * @return bool
+     */
+    public function isVisible() : bool
+    {
+        return $this->attributes['visible'] ? true : false;
     }
 
     /******************************************************************************************************************/

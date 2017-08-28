@@ -10,10 +10,18 @@ use Illuminate\Support\Facades\Session;
 
 class ReviewsController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->middleware('auth');
     }
+
+    /******************************************************************************************************************/
 
     /**
      * @param  \Illuminate\Http\Request  $request
@@ -37,6 +45,8 @@ class ReviewsController extends Controller
         return redirect()->route('attractions.show', $attractionId);
     }
 
+    /******************************************************************************************************************/
+
     /**
      * Update the specified resource in storage.
      *
@@ -57,6 +67,8 @@ class ReviewsController extends Controller
         // Redirect back to the attraction.
         return redirect()->route('attractions.show', $attractionId);
     }
+
+    /******************************************************************************************************************/
 
     /**
      * Remove the specified resource from storage.

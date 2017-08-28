@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    <h1>Update Attraction</h1>
+    <h1>Edit Attraction</h1>
     <div class="row">
         <div class="col-sm-3">
             @if($attraction->photos)

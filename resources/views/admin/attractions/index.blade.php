@@ -10,8 +10,8 @@
             <th>User</th>
             <th>Name</th>
             <th>Body</th>
-            <th>Created</th>
-            <th>Updated</th>
+            <th>Created at</th>
+            <th>Updated at</th>
         </tr>
         </thead>
         <tbody>

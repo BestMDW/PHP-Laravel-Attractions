@@ -23,7 +23,12 @@ class CreateReviewsTable extends Migration
             $table->enum('rating', [1, 2, 3, 4, 5]);
             // Content of the review.
             $table->text('content')->nullable();
+            // Visible / Hidden state of the review.
+            $table->enum('visible', [0, 1])->default(1);
             $table->timestamps();
+
+            // User can add only one review in attraction.
+            $table->unique(['user_id', 'attraction_id']);
 
             //---------------------------------------------------------------------------------------------------------
             // Foreign keys

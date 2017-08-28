@@ -140,7 +140,7 @@
                     </li>
 
                     <li>
-                        <a href="/reviews"><i class="fa fa-table fa-fw"></i> Reviews</a>
+                        <a href="{{ route('admin.reviews.index') }}"><i class="fa fa-table fa-fw"></i> Reviews</a>
                     </li>
                 </ul>
 
@@ -150,52 +150,7 @@
         </div>
         <!-- /.navbar-static-side -->
     </nav>
-
-
-
-
-
-    <div class="navbar-default sidebar" role="navigation">
-        <div class="sidebar-nav navbar-collapse">
-            <ul class="nav" id="side-menu">
-                <li>
-                    <a href="/profile"><i class="fa fa-dashboard fa-fw"></i>Profile</a>
-                </li>
-
-
-
-
-                <li>
-                    <a href="#"><i class="fa fa-wrench fa-fw"></i> Posts<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="">All Posts</a>
-                        </li>
-
-                        <li>
-                            <a href="">Create Post</a>
-                        </li>
-
-                    </ul>
-                    <!-- /.nav-second-level -->
-                </li>
-
-
-
-
-
-            </ul>
-
-        </div>
-
-    </div>
-
 </div>
-
-
-
-
-
 
 <!-- Page Content -->
 <div id="page-wrapper">
@@ -219,14 +174,7 @@
 
 <!-- jQuery -->
 <script src="{{asset('js/libs.js')}}"></script>
-
-
 @yield('footer')
-
-
-
-
-
 </body>
 
 </html>

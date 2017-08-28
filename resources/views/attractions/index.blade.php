@@ -6,7 +6,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Attractions</div>
                     <div class="panel-body">
-                        @if($attractions)
+                        @if($attractions->count() > 0)
                             @foreach($attractions as $attraction)
                                 <div class="row">
                                     <div class="col-sm-2">
@@ -16,7 +16,8 @@
                                     </div>
                                     <div class="col-sm-10">
                                         <h2 style="margin-top: 0">
-                                            <a href="{{ route('attractions.show', $attraction->id) }}">{{ $attraction->name }}</a>
+                                            <a href="{{ route('attractions.show', $attraction->id) }}" class="col-sm-11" style="padding-left: 0;">{{ $attraction->name }}</a>
+                                            <div class="col-sm-1">{{ $attraction->reviews->count() > 0 ? $attraction->reviews->avg('rating') : '-' }}</div>
                                         </h2>
                                         <p>{{ str_limit($attraction->body, 300) }}</p>
                                     </div>

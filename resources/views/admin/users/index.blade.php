@@ -9,8 +9,8 @@
             <th>Email</th>
             <th>Role</th>
             <th>Status</th>
-            <th>Created</th>
-            <th>Updated</th>
+            <th>Created at</th>
+            <th>Updated at</th>
         </tr>
         </thead>
         <tbody>

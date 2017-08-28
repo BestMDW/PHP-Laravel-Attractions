@@ -9,10 +9,18 @@ use Illuminate\Support\Facades\Auth;
 
 class AttractionsController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->middleware('web');
     }
+
+    /******************************************************************************************************************/
 
     /**
      * Display a listing of the resource.
@@ -22,11 +30,25 @@ class AttractionsController extends Controller
     public function index()
     {
         // Get all approved attractions.
-        $attractions = Attraction::all();
+        $attractions = Attraction::all()->sortBy('name');
 
         // Load view from the resource "resources\views\attractions\index.blade.php"
         return view('attractions.index', compact('attractions'));
     }
+
+    /******************************************************************************************************************/
+
+
+    public function topRated()
+    {
+        // Get all approved attractions.
+        $attractions = Attraction::all()->leftJoin('reviews', 'reviews.attraction_id', '=', 'attraction.id')->sortBy('name');
+
+        // Load view from the resource "resources\views\attractions\index.blade.php"
+        return view('attractions.index', compact('attractions'));
+    }
+
+    /******************************************************************************************************************/
 
     /**
      * Display the specified resource.
@@ -42,8 +64,8 @@ class AttractionsController extends Controller
         // Get possible rates for review.
         $rates = Review::getRates();
 
-        // Get all reviews.
-        $reviews = $attraction->reviews;
+        // Get all visible reviews.
+        $reviews = Review::where(['attraction_id' => $id, 'visible' => '1'])->orderByDesc('created_at')->get();
 
         // Get users review.
         $userReview = $attraction->reviews()->whereUserId(Auth::user()->id)->first();
