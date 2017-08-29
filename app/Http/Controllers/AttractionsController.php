@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Attraction;
+use App\Photo;
 use App\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,8 +34,11 @@ class AttractionsController extends Controller
         // Get all approved attractions.
         $attractions = Attraction::all()->sortBy('name');
 
+        // Placeholder
+        $placeholder = Photo::PLACEHOLDER;
+
         // Load view from the resource "resources\views\attractions\index.blade.php"
-        return view('attractions.index', compact('attractions'));
+        return view('attractions.index', compact('attractions', 'placeholder'));
     }
 
     /******************************************************************************************************************/
@@ -50,8 +54,11 @@ class AttractionsController extends Controller
             ->limit(5)
             ->get();
 
+        // Placeholder
+        $placeholder = Photo::PLACEHOLDER;
+
         // Load view from the resource "resources\views\attractions\index.blade.php"
-        return view('attractions.topRated', compact('attractions'));
+        return view('attractions.topRated', compact('attractions', 'placeholder'));
     }
 
     /******************************************************************************************************************/

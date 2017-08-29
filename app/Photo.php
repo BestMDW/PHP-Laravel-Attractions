@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 class Photo extends Model
 {
     /** Placeholder path. */
-    const PLACEHOLDER = '/images/placeholder-300x300.png';
+    const PLACEHOLDER = '/img/placeholder-300x300.png';
 
     /**
      * The attributes that are mass assignable.

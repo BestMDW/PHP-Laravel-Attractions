@@ -5,9 +5,15 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <strong>{{ $attraction->name }}</strong>
+                        <div class="col-sm-11">
+                            <strong>{{ $attraction->name }}</strong>
+                        </div>
+                        <div class="col-sm-1 text-info">
+                            <strong>{{ $attraction->reviews->count() > 0 ? round($attraction->reviews->avg('rating')) : '-' }}</strong>
+                        </div>
+                        <div class="clearfix"></div>
                     </div>
-                    <div class="panel-body">
+                    <div class="panel-body text-justify">
                         {{ $attraction->body }}
                         @if($attraction->photos)
                             <hr>

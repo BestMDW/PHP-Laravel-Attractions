@@ -74,6 +74,9 @@ class AdminAttractionsController extends Controller
             ]);
         }
 
+        // Make the toast message for the insertion.
+        Session::flash('toastMessage', 'Attraction "' . $attraction->name . '" has been added.');
+
         // Redirect to the list of the attractions.
         return redirect()->route('admin.attractions.index');
     }
@@ -110,7 +113,24 @@ class AdminAttractionsController extends Controller
         $attraction = Attraction::findOrFail($id);
 
         // Update attraction.
-        $attraction->update($request->all());
+        $attraction->update($request->input());
+
+        // Check all uploaded files.
+        if ($request->file('photo')) {
+            foreach ($request->file('photo') as $file) {
+                // Move uploaded file into the storage.
+                $path = Storage::disk('public')->putFile('photos', $file);
+
+                // Create new record in database for the photo and assign that specific row with attraction.
+                Auth::user()->photos()->create([
+                    'attraction_id' => $attraction->id,
+                    'path' => $path
+                ]);
+            }
+        }
+
+        // Make the toast message for the edition.
+        Session::flash('toastMessage', 'Attraction "' . $attraction->name . '" has been edited.');
 
         // Redirect to the list of the attractions.
         return redirect()->route('admin.attractions.index');
