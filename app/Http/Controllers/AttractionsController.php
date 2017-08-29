@@ -32,7 +32,7 @@ class AttractionsController extends Controller
     public function index()
     {
         // Get all approved attractions.
-        $attractions = Attraction::all()->sortBy('name');
+        $attractions = Attraction::orderBy('name')->paginate(5);
 
         // Placeholder
         $placeholder = Photo::PLACEHOLDER;

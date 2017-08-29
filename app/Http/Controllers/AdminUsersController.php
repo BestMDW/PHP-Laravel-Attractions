@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UsersRequest;
 use App\Role;
 use App\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
@@ -49,7 +48,7 @@ class AdminUsersController extends Controller
     public function index()
     {
         // Get all users.
-        $users = User::all();
+        $users = User::paginate(10);
 
         // Load view from the resource "resources\views\admin\users\index.blade.php"
         return view('admin.users.index', compact('users'));

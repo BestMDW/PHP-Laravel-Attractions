@@ -30,7 +30,7 @@ class AdminAttractionsController extends Controller
     public function index()
     {
         // Get all attractions.
-        $attractions = Attraction::all()->sortBy('name');
+        $attractions = Attraction::orderBy('name')->paginate(15);
 
         // Load view from the resource "resources\views\admin\attractions\index.blade.php"
         return view('admin.attractions.index', compact('attractions'));

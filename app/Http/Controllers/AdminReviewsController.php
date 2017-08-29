@@ -28,7 +28,7 @@ class AdminReviewsController extends Controller
     public function index()
     {
         // Get all reviews.
-        $reviews = Review::all()->sortByDesc('updated_at');
+        $reviews = Review::orderBy('updated_at', 'DESC')->paginate(15);
 
         // Load view from the resource "resources\views\admin\reviews\index.blade.php"
         return view('admin.reviews.index', compact('reviews'));
