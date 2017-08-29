@@ -48,7 +48,10 @@ class AttractionsController extends Controller
     {
         // Get all approved attractions.
         $attractions = Attraction::select('attractions.*', DB::raw('AVG(reviews.rating) AS rate'))
-            ->leftJoin('reviews', 'attractions.id', '=', 'reviews.attraction_id')
+            ->leftJoin('reviews', function ($join) {
+                $join->on('attractions.id', '=', 'reviews.attraction_id')
+                    ->where('visible', '=', '1');
+            })
             ->groupBy('id')
             ->orderByDesc('rate')
             ->limit(5)
