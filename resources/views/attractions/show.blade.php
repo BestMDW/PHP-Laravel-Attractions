@@ -87,13 +87,13 @@
                     <div class="col-md-8 col-md-offset-2">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <div class="col-sm-{{ Auth::user()->isAdmin() ? '9' : '10' }}">
+                                <div class="col-sm-{{ Auth::check() && Auth::user()->isAdmin() ? '9' : '10' }}">
                                     {{ $review->user->name }} <i>[{{ $review->created_at->diffForHumans() }}]</i>
                                 </div>
                                 <div class="col-sm-2 text-info text-right">
                                     <strong>{{ $review->rating }}</strong>
                                 </div>
-                                @if(Auth::user()->isAdmin())
+                                @if(Auth::check() && Auth::user()->isAdmin())
                                     <div class="col-sm-1">
                                         {!! Form::open(['method' => 'PATCH', 'action' => ['AdminReviewsController@hidden', $review->id]]) !!}
                                             {!! Form::submit('Hide', ['class' => 'btn btn-danger']) !!}

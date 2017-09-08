@@ -46,6 +46,6 @@ class Attraction extends Model
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function reviews() {
-        return $this->hasMany('App\Review')->having('visible', '=', '1');
+        return $this->hasMany('App\Review')->where('visible', '=', '1');
     }
 }

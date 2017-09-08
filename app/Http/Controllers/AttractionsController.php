@@ -83,8 +83,11 @@ class AttractionsController extends Controller
         // Get all visible reviews.
         $reviews = Review::where(['attraction_id' => $id, 'visible' => '1'])->orderByDesc('created_at')->get();
 
-        // Get users review.
-        $userReview = $attraction->reviews()->whereUserId(Auth::user()->id)->first();
+        // Get users review if user is logged in.
+        if (Auth::check())
+        {
+            $userReview = $attraction->reviews()->whereUserId(Auth::user()->id)->first();
+        }
 
         // Load view from the resource "resources\views\attractions\show.blade.php"
         return view('attractions.show', compact('attraction', 'rates', 'reviews', 'userReview'));
